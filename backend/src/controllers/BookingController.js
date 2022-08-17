@@ -15,9 +15,7 @@ module.exports = {
                 date,
             });
 
-            await (await booking.populate('hostel')).populate('user').execPopulate();
-
-            return res.json(booking);
+        return res.json(booking);
             
 
         } catch (error) {

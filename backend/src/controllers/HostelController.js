@@ -1,14 +1,15 @@
 const Hostel = require('../models/Hostel');
 const User = require('../models/User');
+const { getById } = require('./SessionController');
 
 
 module.exports ={
 
-    async index(req, res){
+    async indexBreakfast(req, res){
 
         try {
-            const {breakfast} = req.query;
-
+            const {breakfast} = req.params;
+            console.log("cheguei na rota cafe")
             let brkft = false;
 
             if(breakfast.toUpperCase().trim() == "TRUE"){
@@ -24,11 +25,57 @@ module.exports ={
 
     },
 
+    async indexAvailable(req, res){
+
+        try {
+            
+            const {available} = req.params;
+            
+            let avlb = false;
+
+            if(available.toUpperCase().trim() == "TRUE"){
+                avlb = true;
+            }
+
+            const hostels = await Hostel.find({available : avlb});
+
+            return res.json(hostels);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
+
+    async getById(req, res){
+
+        try {
+            console.log("cheguei na rota por id")
+            
+            const {hostel_id} = req.params;
+                               
+
+            const hostels = await Hostel.findById(hostel_id);
+
+            if(!hostels){
+
+                return res.status(400).json({error: 'Hostel not found!'}); 
+            }
+
+            return res.json(hostels);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
+
     async store(req, res){
         try {
             const {filename} = req.file;
             
-            const { owner,
+            const { name,
+                    owner,
                     price,
                     breakfast,
                     location,
@@ -58,6 +105,7 @@ module.exports ={
             const hostel = await Hostel.create({
                 user: user_id,
                 thumbnail: filename,
+                name,
                 owner,
                 price,
                 breakfast : brkft,

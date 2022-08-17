@@ -3,6 +3,7 @@ const user = require('./User');
 
 const HostelSchema = new mongoose.Schema({
     thumbnail: String,
+    name:String,
     owner: String,
     price: Number,
     breakfast: Boolean,
