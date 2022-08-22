@@ -3,13 +3,13 @@ const user = require('./User');
 
 const HostelSchema = new mongoose.Schema({
     thumbnail: String,
-    name:String,
-    owner: String,
+    description:String,
+    company: String,
     price: Number,
     breakfast: Boolean,
     location: String,
     furnitures: [String],
-    guest: Number,
+    maximum_occupants: Number,
     available: Boolean,
     user:{
         type: mongoose.Schema.Types.ObjectId,

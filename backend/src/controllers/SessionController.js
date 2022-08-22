@@ -38,7 +38,7 @@ module.exports = {
         try {
             const{email} = req.headers;
            
-            const user = await User.find({email: email});
+            const user = await User.findOne({email: email});
 
             if(!user){
 
