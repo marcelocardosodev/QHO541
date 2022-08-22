@@ -1,6 +1,6 @@
 const Hostel = require('../models/Hostel');
 const User = require('../models/User');
-const { getById } = require('./SessionController');
+const { getById, updateById } = require('./SessionController');
 
 
 module.exports ={
@@ -50,8 +50,7 @@ module.exports ={
     async getById(req, res){
 
         try {
-            console.log("cheguei na rota por id")
-            
+                        
             const {hostel_id} = req.params;
                                
 
@@ -74,13 +73,13 @@ module.exports ={
         try {
             const {filename} = req.file;
             
-            const { name,
-                    owner,
+            const { description,
+                    company,
                     price,
                     breakfast,
                     location,
                     furnitures,
-                    guest,
+                    maximum_occupants,
                     available} = req.body;
             let brkft = false;
             
@@ -105,18 +104,103 @@ module.exports ={
             const hostel = await Hostel.create({
                 user: user_id,
                 thumbnail: filename,
-                name,
-                owner,
+                description,
+                company,
                 price,
                 breakfast : brkft,
                 location,
                 furnitures : furnitures.split(',').map(furniture => furniture.trim()),
-                guest,
+                maximum_occupants,
                 available : avlb
             })
            return res.json(hostel) ;
         } catch (error) {
            console.log(error);
         }
-    }
+    },
+
+    async updateById(req, res){
+        try {
+            
+            const {hostel_id} = req.params
+            const { description,
+                    company,
+                    price,
+                    breakfast,
+                    location,
+                    furnitures,
+                    maximum_occupants,
+                    available} = req.body;
+            
+            const hostel = await Hostel.findById(hostel_id);
+
+            if(!hostel){
+
+                return res.status(404).json({'error': 'Hostel is not found!'})
+            }
+
+            if(company && company.toUpperCase().trim() !== hostel.company.toUpperCase().trim()){
+                hostel.company = company;
+
+            }
+
+            if(description && description.toUpperCase().trim() !== hostel.description.toUpperCase().trim()){
+                hostel.description = description
+            }
+            if(price && price !== hostel.price){
+                hostel.price = price;
+            }
+
+            if(breakfast && breakfast !== hostel.breakfast){
+                hostel.breakfast = breakfast;
+            }
+
+            if(available && available !== hostel.available){
+                hostel.available = available;
+            }
+
+            if(location && location.toUpperCase().trim() !== hostel.location.toUpperCase().trim()){
+                hostel.location = location;
+            }
+
+            if(maximum_occupants && maximum_occupants !== hostel.maximum_occupants){
+                hostel.maximum_occupants = maximum_occupants;
+            }
+
+            if(furnitures){
+                hostel.furnitures = furnitures;
+            }
+
+            await hostel.save();
+
+            return res.json(hostel);
+        } catch (error) {
+           console.log(error);
+        }
+
+    },
+
+    async removeById(req, res){
+
+        try {
+                        
+            const {hostel_id} = req.params;
+                               
+
+            const hostels = await Hostel.findById(hostel_id);
+
+            if(!hostels){
+
+                return res.status(400).json({error: 'Hostel not found!'}); 
+            }
+
+            await Hostel.findByIdAndDelete(hostel_id);
+
+            return res.status(200).json({message: 'ok'})
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
 }
