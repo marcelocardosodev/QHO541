@@ -3,12 +3,10 @@ const user = require('./User');
 
 const HostelSchema = new mongoose.Schema({
     thumbnail: String,
-    description:String,
     company: String,
     price: Number,
     breakfast: Boolean,
     location: String,
-    furnitures: [String],
     maximum_occupants: Number,
     available: Boolean,
     user:{
@@ -17,7 +15,15 @@ const HostelSchema = new mongoose.Schema({
     }
 
 
+},{
+    toJSON:{
+        virtuals:true,
+    }
 });
+
+HostelSchema.virtual('thumbnail_url').get(function(){
+    return `http://localhost:3333/files/${this.thumbnail}`
+})
 
 const hostel = mongoose.model('Hostel', HostelSchema);
 

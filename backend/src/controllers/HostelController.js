@@ -73,12 +73,10 @@ module.exports ={
         try {
             const {filename} = req.file;
             
-            const { description,
-                    company,
+            const { company,
                     price,
                     breakfast,
                     location,
-                    furnitures,
                     maximum_occupants,
                     available} = req.body;
             let brkft = false;
@@ -104,12 +102,10 @@ module.exports ={
             const hostel = await Hostel.create({
                 user: user_id,
                 thumbnail: filename,
-                description,
                 company,
                 price,
                 breakfast : brkft,
                 location,
-                furnitures : furnitures.split(',').map(furniture => furniture.trim()),
                 maximum_occupants,
                 available : avlb
             })
@@ -123,12 +119,10 @@ module.exports ={
         try {
             
             const {hostel_id} = req.params
-            const { description,
-                    company,
+            const { company,
                     price,
                     breakfast,
                     location,
-                    furnitures,
                     maximum_occupants,
                     available} = req.body;
             
@@ -144,9 +138,6 @@ module.exports ={
 
             }
 
-            if(description && description.toUpperCase().trim() !== hostel.description.toUpperCase().trim()){
-                hostel.description = description
-            }
             if(price && price !== hostel.price){
                 hostel.price = price;
             }
@@ -165,10 +156,6 @@ module.exports ={
 
             if(maximum_occupants && maximum_occupants !== hostel.maximum_occupants){
                 hostel.maximum_occupants = maximum_occupants;
-            }
-
-            if(furnitures){
-                hostel.furnitures = furnitures;
             }
 
             await hostel.save();
