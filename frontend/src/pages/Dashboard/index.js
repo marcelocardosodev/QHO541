@@ -31,6 +31,7 @@ export default function DashBoard(){
                       <span>{hostel.breakfast ? "Breackfast" : ""}</span>
                       <span>{hostel.available ? "" : "Not available"}</span>
                      <span>{hostel.price? `R$:${hostel.price}` : "Gratis"}</span>
+                     <Link to ='/detail' onClick={localStorage.setItem('hostel_id', hostel._id)}>detail</Link>
                   </li>
               ))}
           </ul> 
