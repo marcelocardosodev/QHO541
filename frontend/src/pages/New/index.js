@@ -3,6 +3,7 @@ import camera from '../../assets/camera.svg';
 import api from '../../services/api.js';
 import './styles.css';
 
+
 export default function New({ history }){
    const [thumbnail,setThumbnail] = useState(null);
    const [company, setCompany] = useState('');
