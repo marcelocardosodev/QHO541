@@ -1,0 +1,12 @@
+label#thumbnail input{
+    display: none;
+}
+
+label#thumbnail.has-thumbnail{
+    border: 0;
+}
+
+label#thmbnail.has-thumbnail img{
+    display: none;
+}
+

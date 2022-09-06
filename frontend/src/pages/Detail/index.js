@@ -7,7 +7,7 @@ export default function DeTail(){
     const [hostel, setHostel] = useState({});
     useEffect(() =>{
          async function loadDetailHostel(){
-             const hostel_id = localStorage.getItem('hostel_id');
+             const hostel_id = localStorage.getItem('hostel');
              const response = await api.get(`/hostels/${hostel_id}`).then(response => 
                  setHostel(response.data));
              
@@ -32,7 +32,7 @@ export default function DeTail(){
              </li>  
                }
            </ul> 
-          <Link to='/new'>
+          <Link to='/booking'>
              <button className ="btn">Make a reservation</button> 
           </Link>
          </>
