@@ -9,6 +9,10 @@ export default function Login({history}){
     event.preventDefault();
 
     const response = await api.post('/sessions', {email})
+    .catch((error) =>{
+      console.log(error.response.data)
+      alert("error " + error.response.data.error);
+    })
     
     const {_id} = response.data;
 

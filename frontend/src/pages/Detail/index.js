@@ -8,10 +8,10 @@ export default function DeTail(){
     useEffect(() =>{
          async function loadDetailHostel(){
              const hostel_id = localStorage.getItem('hostel');
-             const response = await api.get(`/hostels/${hostel_id}`).then(response => 
+             await api.get(`/hostels/${hostel_id}`).then(response => 
                  setHostel(response.data));
              
-             setHostel(response.data);
+            // setHostel(response.data);
          }
  
          loadDetailHostel();
@@ -22,11 +22,11 @@ export default function DeTail(){
            <ul className ="hostel-detail">
                {
                  <li key={hostel._id}>
-                 <header style={{ backgroundImage : `url(${hostel.thumbnail_url})`}}/>
+                 <header style={{backgroundImage : 'url('+hostel.thumbnail_url+')'}}/>
                  <strong>{hostel.company}</strong>
                  <span>{hostel.location}</span>
-                 <span>{hostel.breakfast ? "Breackfast" : ""}</span>
-                 <span>{hostel.available ? "" : "Not available"}</span>
+                 <span>{hostel.breakfast ? "Breackfast" : "No Breackfast"}</span>
+                 <span>{hostel.available ? "Available" : "Not available"}</span>
                 <span>{hostel.price? `R$:${hostel.price}` : "Gratis"}</span>
                 
              </li>  

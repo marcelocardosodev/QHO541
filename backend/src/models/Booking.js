@@ -4,7 +4,7 @@ const hostel = require('./Hostel');
 const guest = require('./Guest')
 
 const BookingSchema = new mongoose.Schema({
-    guest_name: String,
+    
     date: Date,
     check_in: Date,
     check_out: Date,
