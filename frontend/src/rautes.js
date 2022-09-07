@@ -6,6 +6,8 @@ import Dashboard from './pages/Dashboard';
 import New from  './pages/New';
 import Detail from './pages/Detail'
 import Booking from './pages/Booking';
+import Reservations from './pages/Reservations';
+
 
 export default function Routing(){
     return (
@@ -16,6 +18,7 @@ export default function Routing(){
                 <Route path ="/new" component={New}/>
                 <Route path ="/detail" component={Detail}/>
                 <Route path= "/booking" component={Booking}/>
+                <Route path= "/reservations" component={Reservations}/>
             </Switch>
         </BrowserRouter>
     );

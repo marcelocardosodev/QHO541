@@ -10,7 +10,8 @@ module.exports = {
 
             if(user){
 
-                return res.status(400).json({error: 'User already exists'});
+                //return res.status(400).json({error: 'User already exists'});
+                return res.json(user);
                 
             }
             

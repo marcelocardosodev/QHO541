@@ -38,6 +38,9 @@ export default function Booking({ history }){
                 hostel_id
             }
             
+        }).catch((error)=>{
+            console.log(error.response.data.info)
+            alert(error.response.data.info)
         })
         
         history.push('/dashboard');

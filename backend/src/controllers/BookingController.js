@@ -24,29 +24,30 @@ module.exports = {
 
             if(moment().isAfter(check_in, formatDate)){
                 
-                return res.status(400).json({error: 'Check_in is not before now'});
+                return res.status(400).json({info: 'Check_in is not before now'});
+                
             }
 
             if(moment(check_in).isAfter(check_out, formatDate)){
                 
-                return res.status(400).json({error: 'Check_out is not before Check_in'});
+                return res.status(400).json({info: 'Check_out is not before Check_in'});
             }
 
             if(moment(check_in).isSame(check_out, formatDate)){
                 
-                return res.status(400).json({error: 'Minimum of one day for booking'});
+                return res.status(400).json({info: 'Minimum of one day for booking'});
             }
 
             const hostel = await Hostel.findById(hostel_id);
 
             if(!hostel){
 
-                return res.status(404).json({error:'Hostel is not found!'});
+                return res.status(404).json({info:'Hostel is not found!'});
             }
 
             if(hostel.available === false){
 
-               return res.status(404).json({message:'Hostel is not available!'});
+               return res.status(404).json({info:'Hostel is not available!'});
             }
 
             const bookingRecords = await Booking.findOne(
@@ -60,14 +61,14 @@ module.exports = {
 
             const user = await User.findById(user_id);
             if(!user){
-                return res.status(404).json({error: 'User is not found!'});
+                return res.status(404).json({info: 'User is not found!'});
             }
 
             let guest = await Guest.findOne({email: guest_email});
 
             if(guest && guest.guest_name.toUpperCase().trim() !== guest_name.toUpperCase().trim()){
 
-                return res.status(400).json({message:"Email belongs to another guest"})
+                return res.status(400).json({info:"Email belongs to another guest"})
             }
 
             if(!guest){
@@ -166,7 +167,8 @@ module.exports = {
 
     async showBookings(req, res){
         try {
-            const bookings = await Booking.find()
+            const bookings = await Booking.find().populate('hostel').populate('guest')
+            .populate('user');
 
             return res.status(200).json(bookings)
         } catch (error) {
@@ -179,7 +181,7 @@ module.exports = {
             const{booking_id} = res.params;
             const booking = await Booking.findById(booking_id);
             if(!booking) {
-                return res.status(404).json({error: "Booking is not found!"})
+                return res.status(404).json({info: "Booking is not found!"})
             }
 
             await Booking.findByIdAndDelete(booking_id);

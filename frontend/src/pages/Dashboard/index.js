@@ -14,7 +14,7 @@ export default function DashBoard(){
             }).then(response => 
                 setHostels(response.data));
             
-            setHostels(response.data);
+           // setHostels(response.data);
         }
 
         loadHostel();
@@ -25,7 +25,8 @@ export default function DashBoard(){
           <ul className ="hostel-list">
               {hostels.map(hostel => (
                   <li key={hostel._id}>
-                      <header style={{ backgroundImage : `url(${hostel.thumbnail_url})`}}/>
+                    
+                    <header style={{backgroundImage : 'url('+hostel.thumbnail_url+')'}}/>
                       <strong>{hostel.company}</strong>
                       <span>{hostel.location}</span>
                       <span>{hostel.breakfast ? "Breackfast" : ""}</span>
