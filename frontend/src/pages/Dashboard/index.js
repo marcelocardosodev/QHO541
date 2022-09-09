@@ -23,6 +23,12 @@ export default function DashBoard(){
     }, []);
     return (
         <>
+          <div class="topnav">
+            <a class="active" href="/dashboard">DashBoard</a>
+            <a href="/new">New</a>
+            <a href="/reservations">Reservation</a>
+            <a href="/">Logout</a>
+          </div>
           <h3>
             <strong>Hostels</strong>
           </h3>
@@ -30,7 +36,8 @@ export default function DashBoard(){
               {hostels.map(hostel => (
                   <li key={hostel._id}>
                     
-                    <header style={{backgroundImage : 'url('+hostel.thumbnail_url+')'}}/>
+                    
+                      <a href= {hostel.thumbnail_url} target="_blank" rel="noreferrer">Photo</a>
                       <strong>{hostel.company}</strong>
                       <span>{hostel.location}</span>
                       <span>{hostel.breakfast ? "Breackfast" : ""}</span>

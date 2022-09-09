@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import './styles.css';
 import moment from 'moment';
@@ -26,6 +26,13 @@ export default function Reservations(){
     }, []);
     return (
         <>
+
+        <div class="topnav">
+            <a href="/dashboard">DashBoard</a>
+            <a href="/new">New</a>
+            <a class="active" href="/reservations">Reservation</a>
+            <a href="/">Logout</a>
+          </div>
           <h3>
             <strong>Reservations</strong>.
           </h3>
