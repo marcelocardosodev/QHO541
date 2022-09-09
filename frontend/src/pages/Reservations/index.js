@@ -41,12 +41,12 @@ export default function Reservations(){
                 
                   <li key={booking._id}>
                     
-                      <span>Company : {booking.hostel.company}</span> 
-                      <span>Guest : {booking.guest.guest_name}</span> 
-                      <span>check in : {moment(booking.check_in).format(formatDate)}</span>
-                      <span>chec out : {moment(booking.check_out).format(formatDate)}</span>
-                      <span>Created : {moment(booking.date).format(formatDate)}</span>
-                      <span>Made by : {booking.user.email}</span>  
+                      <span><strong>Company : </strong>{booking.hostel.company}</span> 
+                      <span><strong>Guest : </strong>{booking.guest.guest_name}</span> 
+                      <span><strong>Check in : </strong>{moment(booking.check_in).format(formatDate)}</span>
+                      <span><strong>Chec out : </strong>{moment(booking.check_out).format(formatDate)}</span>
+                      <span><strong>Created : </strong>{moment(booking.date).format(formatDate)}</span>
+                      <span><strong>Made by : </strong>{booking.user.email}</span>  
                       
                       
                       <span></span>

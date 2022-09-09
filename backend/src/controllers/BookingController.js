@@ -110,7 +110,7 @@ module.exports = {
             const booking = await Booking.findById(booking_id);
 
             if(!booking){
-                return res.status(404).json({erro: "Booking is not found!"})
+                return res.status(404).json({error: "Booking is not found!"})
             }
 
             if(moment().isAfter(check_in, formatDate)){
@@ -138,7 +138,7 @@ module.exports = {
 
             if(hostel.available === false){
 
-               return res.status(404).json({message:'Hostel is not available!'});
+               return res.status(404).json({error:'Hostel is not available!'});
             }
 
             const bookingRecords = await Booking.findOne(
@@ -146,7 +146,7 @@ module.exports = {
 
 
             if(bookingRecords){
-                return res.status(400).json({info: "There is already a reservation for this date!"});
+                return res.status(400).json({error: "There is already a reservation for this date!"});
              
             }
 
@@ -162,6 +162,7 @@ module.exports = {
 
         } catch (error) {
             console.log(error)
+            return res.status(500).json({error: "Service error, try later!"})
         }
     },
 
@@ -172,7 +173,7 @@ module.exports = {
 
             return res.status(200).json(bookings)
         } catch (error) {
-            
+            return res.status(500).json({error: "Service error, try later!"})
         }
     },
 
@@ -181,14 +182,14 @@ module.exports = {
             const{booking_id} = res.params;
             const booking = await Booking.findById(booking_id);
             if(!booking) {
-                return res.status(404).json({info: "Booking is not found!"})
+                return res.status(404).json({error: "Booking is not found!"})
             }
 
             await Booking.findByIdAndDelete(booking_id);
 
             return res.status(200).json("ok");
         } catch (error) {
-            
+            return res.status(500).json({error: "Service error, try later!"})
         }
     }
 }

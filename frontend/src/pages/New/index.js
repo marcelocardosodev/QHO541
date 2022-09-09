@@ -42,7 +42,7 @@ export default function New(){
             alert("error " + error.response.data.error);
         });
         navigate('/dashboard');
-        //history.push('/dashboard');
+        
         
     }
     return (
@@ -57,7 +57,7 @@ export default function New(){
             <label 
                 id="thumbnail" 
                 style={{ backgroundImage : `url(${preview})`}} 
-                className={thumbnail ? 'has-thumbnail' : ''}
+                className={thumbnail ? 'has-thumbnail' : null}
                 >
                 <input type="file" onChange={event => setThumbnail(event.target.files[0])}/>
                 <img src={camera} alt="Select img"/>

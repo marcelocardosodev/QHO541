@@ -32,11 +32,12 @@ export default function DeTail(){
                {
                  <li key={hostel._id}>
                  <a href= {hostel.thumbnail_url} target="_blank" rel="noreferrer" >Photo</a>
-                 <strong>{hostel.company}</strong>
-                 <span>{hostel.location}</span>
-                 <span>{hostel.breakfast ? "Breackfast" : "No Breackfast"}</span>
-                 <span>{hostel.available ? "Available" : "Not available"}</span>
-                <span>{hostel.price? `R$:${hostel.price}` : "Gratis"}</span>
+                 <spam><strong>Company: </strong>{hostel.company}</spam>
+                 <span><strong>Location: </strong>{hostel.location}</span>
+                 <span><strong>{hostel.breakfast ? "Breackfast free" : "No Breackfast"}</strong></span>
+                 <span><strong>{hostel.available ? "Available" : "Not available"}</strong></span>
+                 <span><strong>Daily value: </strong>{hostel.price? `R$:${hostel.price}` : "Gratis"}</span>
+                 <span><strong>Capacity: </strong>{hostel.maximum_occupants}</span>
                 
              </li>  
                }

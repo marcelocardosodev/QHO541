@@ -6,6 +6,11 @@ module.exports = {
         try {
             const {email} = req.body;
 
+            if(!email){
+
+                return res.status(400).json({error: 'E-mail is required'});
+            }
+
             let user = await User.findOne({email});
 
             if(user){
@@ -19,7 +24,7 @@ module.exports = {
 
             return res.json(user);
         } catch (error) {
-            
+          return res.status(500).json({error: "Service error, try later!"})
           console.log(error)
         }
     },
@@ -31,6 +36,7 @@ module.exports = {
 
         } catch (error) {
            console.log(error) 
+           return res.status(500).json({error: "Service error, try later!"})
         }
     },
 
@@ -49,6 +55,7 @@ module.exports = {
             return res.json(user)
         } catch (error) {
             console.log(error) 
+            return res.status(500).json({error: "Service error, try later!"})
         }
     },
 
@@ -67,6 +74,7 @@ module.exports = {
             return res.json(user)
         } catch (error) {
             console.log(error)  
+            return res.status(500).json({error: "Service error, try later!"})
         }
     },
 
@@ -86,7 +94,8 @@ module.exports = {
 
             return res.status(200).json("Ok")
         } catch (error) {
-            console.log(error) 
+            console.log(error)
+            return res.status(500).json({error: "Service error, try later!"}) 
         }
     },
 
@@ -113,7 +122,8 @@ module.exports = {
 
             return res.json(user)
         } catch (error) {
-            console.log(error)  
+            console.log(error) 
+            return res.status(500).json({error: "Service error, try later!"}) 
         }
     }
 

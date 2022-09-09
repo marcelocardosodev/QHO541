@@ -13,7 +13,7 @@ module.exports = {
             return res.json(hostels);
 
         } catch (error) {
-            
+            return res.status(500).json({error: "Service error, try later!"})
         }
     }
 }
