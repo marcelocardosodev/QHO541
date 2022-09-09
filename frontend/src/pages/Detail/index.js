@@ -19,13 +19,19 @@ export default function DeTail(){
      }, []);
      return (
          <>
+          <div class="topnav">
+            <a href="/dashboard">DashBoard</a>
+            <a href="/new">New</a>
+            <a href="/reservations">Reservation</a>
+            <a href="/">Logout</a>
+          </div>
           <h3>
             <strong>Hostel Detail</strong>
           </h3>
            <ul className ="hostel-detail">
                {
                  <li key={hostel._id}>
-                 <header style={{backgroundImage : 'url('+hostel.thumbnail_url+')'}}/>
+                 <a href= {hostel.thumbnail_url} target="_blank" rel="noreferrer" >Photo</a>
                  <strong>{hostel.company}</strong>
                  <span>{hostel.location}</span>
                  <span>{hostel.breakfast ? "Breackfast" : "No Breackfast"}</span>

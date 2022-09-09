@@ -46,6 +46,13 @@ export default function New(){
         
     }
     return (
+        <>
+        <div class="topnav">
+            <a href="/dashboard">DashBoard</a>
+            <a class="active" href="/new">New</a>
+            <a href="/reservations">Reservation</a>
+            <a href="/">Logout</a>
+          </div>
         <form onSubmit={handleSubmit}>
             <label 
                 id="thumbnail" 
@@ -104,6 +111,7 @@ export default function New(){
             />
             <button className='btn' type='submit'>Register</button>
         </form>
+        </>
         
     )
 }

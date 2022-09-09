@@ -1,12 +1,11 @@
 import React, {useState} from "react";
 import {useNavigate} from 'react-router-dom';
-
-
 import api from "../../services/api";
 
 export default function Login(){
   const navigate = useNavigate(); 
   const [email, setEmail] = useState('');
+  
   async function handleSubmit(event){
     event.preventDefault();
 
@@ -48,6 +47,7 @@ export default function Login(){
           />
 
           <button className='btn' type='submit'>Sig in</button>
+        
         </form>
         
       
