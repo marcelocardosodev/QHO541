@@ -9,7 +9,7 @@ export default function DashBoard(){
    useEffect(() =>{
         async function loadHostel(){
             const user_id = localStorage.getItem('user');
-            const response = await api.get('/dashboard',{
+            await api.get('/dashboard',{
                 headers:{user_id}
             }).then(response => 
                 setHostels(response.data));
@@ -18,10 +18,14 @@ export default function DashBoard(){
         }
 
         loadHostel();
+        
     
     }, []);
     return (
         <>
+          <h3>
+            <strong>Hostels</strong>
+          </h3>
           <ul className ="hostel-list">
               {hostels.map(hostel => (
                   <li key={hostel._id}>

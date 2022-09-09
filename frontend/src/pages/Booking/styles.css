@@ -9,4 +9,9 @@ label#thumbnail.has-thumbnail{
 label#thmbnail.has-thumbnail img{
     display: none;
 }
+h3{
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 

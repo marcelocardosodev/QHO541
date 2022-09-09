@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import './styles.css';
 import moment from 'moment';
@@ -26,7 +26,9 @@ export default function Reservations(){
     }, []);
     return (
         <>
-          <h2>Reservations</h2>
+          <h3>
+            <strong>Reservations</strong>.
+          </h3>
           <ul className ="booking-list">
               {bookings.map(booking => (
                 
@@ -46,8 +48,8 @@ export default function Reservations(){
                   </li>
               ))}
           </ul> 
-         <Link to='/new'>
-            <button className ="btn">Register new hostel</button> 
+         <Link to='/dashboard'>
+            <button className ="btn">Come back</button> 
          </Link>
         </>
 
