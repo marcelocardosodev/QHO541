@@ -21,6 +21,7 @@ module.exports ={
             return res.json(hostels);
         } catch (error) {
             console.log(error);
+            return res.status(500).json({error: "Service error, try later!"})
         }
 
     },
@@ -43,6 +44,7 @@ module.exports ={
 
         } catch (error) {
             console.log(error);
+            return res.status(500).json({error: "Service error, try later!"})
         }
 
     },
@@ -65,6 +67,7 @@ module.exports ={
 
         } catch (error) {
             console.log(error);
+            return res.status(500).json({error: "Service error, try later!"})
         }
 
     },
@@ -112,6 +115,7 @@ module.exports ={
            return res.json(hostel) ;
         } catch (error) {
            console.log(error);
+           return res.status(500).json({error: "Service error, try later!"})
         }
     },
 
@@ -163,6 +167,7 @@ module.exports ={
             return res.json(hostel);
         } catch (error) {
            console.log(error);
+           return res.status(500).json({error: "Service error, try later!"})
         }
 
     },
@@ -187,6 +192,7 @@ module.exports ={
 
         } catch (error) {
             console.log(error);
+            return res.status(500).json({error: "Service error, try later!"})
         }
 
     },
