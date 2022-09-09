@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -12,14 +12,16 @@ import Reservations from './pages/Reservations';
 export default function Routing(){
     return (
         <BrowserRouter>
-            <Switch>
-                <Route path ="/" exact component={Login}/>
-                <Route path ="/dashboard" component={Dashboard}/>
-                <Route path ="/new" component={New}/>
-                <Route path ="/detail" component={Detail}/>
-                <Route path= "/booking" component={Booking}/>
-                <Route path= "/reservations" component={Reservations}/>
-            </Switch>
+        
+            <Routes>
+                <Route path ="/" exact element={<Login/>}/>
+                <Route path ="/dashboard" element={<Dashboard/>}/>
+                <Route path ="/new" element={<New/>}/>
+                <Route path ="/detail" element={<Detail/>}/>
+                <Route path= "/booking" element={<Booking/>}/>
+                <Route path= "/reservations" element={<Reservations/>}/>
+            </Routes>
+        
         </BrowserRouter>
     );
 }

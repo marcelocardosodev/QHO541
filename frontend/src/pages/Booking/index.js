@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import api from "../../services/api";
 import { Link } from 'react-router-dom';
 import './styles.css';
+import {useNavigate} from 'react-router-dom';
 
 export default function Booking({ history }){
+    const navigate = useNavigate(); 
     
     const [check_in, setCheck_in] = useState('');
     const [check_out, setCheck_out] = useState('');
@@ -43,10 +45,14 @@ export default function Booking({ history }){
             alert(error.response.data.info)
         })
         
-        history.push('/dashboard');
+        navigate('/reservations');
     }
     
     return(
+        <>
+        <h3>
+            <strong>Make a  booking</strong>.
+        </h3>
         <form onSubmit={handleSubmit}>
             
             <label htmlFor="check_in">Check_in <span>(yyyy-mm-dd)</span></label>
@@ -93,5 +99,7 @@ export default function Booking({ history }){
             <button  type="submit" className="btn" >Confirm reservation</button>
             <Link to='/dashboard'>Cancel</Link>
         </form>
+
+        </>
     )
 }

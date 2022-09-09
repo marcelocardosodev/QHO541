@@ -16,3 +16,9 @@ ul.hostel-list li header {
     background-size: cover;
     border-radius: 4px;
 }
+
+h3{
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 30px;
+  }

@@ -19,6 +19,9 @@ export default function DeTail(){
      }, []);
      return (
          <>
+          <h3>
+            <strong>Hostel Detail</strong>
+          </h3>
            <ul className ="hostel-detail">
                {
                  <li key={hostel._id}>

@@ -1,10 +1,14 @@
 import React, {useState, useMemo} from 'react';
+import {useNavigate} from 'react-router-dom';
 import camera from '../../assets/camera.svg';
 import api from '../../services/api.js';
 import './styles.css';
 
 
-export default function New({ history }){
+
+export default function New(){
+    const navigate = useNavigate(); 
+
    const [thumbnail,setThumbnail] = useState(null);
    const [company, setCompany] = useState('');
    const [location, setLocation ] = useState('');
@@ -33,9 +37,13 @@ export default function New({ history }){
 
          await api.post('/hostel', data,{
             headers : {user_id}
+            
+        }).catch((error) =>{
+            alert("error " + error.response.data.error);
         });
-
-        history.push('/dashboard');
+        navigate('/dashboard');
+        //history.push('/dashboard');
+        
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -94,7 +102,7 @@ export default function New({ history }){
                 value={maximum_occupants}
                 onChange={event=>setMaximum_occupants(event.target.value)}
             />
-            <button  type="submit" className="btn" >Register</button>
+            <button className='btn' type='submit'>Register</button>
         </form>
         
     )
